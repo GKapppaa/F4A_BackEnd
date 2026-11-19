@@ -1,10 +1,19 @@
 package F4A.web.product.controller;
 
+import F4A.web.product.dto.ProductRequest;
 import F4A.web.product.model.Product;
 import F4A.web.product.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -28,21 +37,17 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> create(
-            @RequestParam Long categoriaId,
-            @RequestBody Product product
-    ) {
-        Product created = service.create(product, categoriaId);
+    public ResponseEntity<Product> create(@Valid @RequestBody ProductRequest request) {
+        Product created = service.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @PutMapping("/{id}")
     public Product update(
             @PathVariable Long id,
-            @RequestParam Long categoriaId,
-            @RequestBody Product product
+            @Valid @RequestBody ProductRequest request
     ) {
-        return service.update(id, product, categoriaId);
+        return service.update(id, request);
     }
 
     @DeleteMapping("/{id}")

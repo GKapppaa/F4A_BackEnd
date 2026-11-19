@@ -1,9 +1,19 @@
 package F4A.web.category.model;
-import jakarta.persistence.*;
 
-@Entity 
-@Table(name ="categorias")
-public class Category{
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+
+@Entity
+@Table(
+        name = "categorias",
+        uniqueConstraints = @UniqueConstraint(name = "uk_categorias_nombre", columnNames = "nombre")
+)
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,32 +24,32 @@ public class Category{
     @Column(length = 500)
     private String descripcion;
 
-    protected Category(){
-        // Esto es requerido por el JPA
+    protected Category() {
+        // Requerido por JPA.
     }
 
-    public Category(String nombre, String descripcion){
+    public Category(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
-    public Long getId(){
+    public Long getId() {
         return id;
     }
 
-    public String getNombre(){
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre){
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getDescripcion(){
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion){
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 }
