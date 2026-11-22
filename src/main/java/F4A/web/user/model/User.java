@@ -13,6 +13,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(
@@ -24,12 +28,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
+    @Size(max = 100)
+    @Pattern(regexp = "^[\\p{L}\\p{M}][\\p{L}\\p{M} '\\u2019-]{0,99}$")
     @Column(nullable = false, length = 100)
     private String nombre;
 
+    @NotBlank
+    @Size(max = 100)
+    @Pattern(regexp = "^[\\p{L}\\p{M}][\\p{L}\\p{M} '\\u2019-]{0,99}$")
     @Column(nullable = false, length = 100)
     private String apellidos;
 
+    @NotBlank
+    @Email
+    @Size(max = 255)
     @Column(name = "email", nullable = false, length = 255)
     private String correo;
 
@@ -60,7 +73,7 @@ public class User {
     @Column(length = 500)
     private String indicaciones;
 
-    protected User() {
+    public User() {
     }
 
     public Long getId() {
