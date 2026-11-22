@@ -4,6 +4,7 @@ import F4A.web.product.dto.ProductRequest;
 import F4A.web.product.model.Product;
 import F4A.web.product.service.ProductService;
 import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v2/products")
+@SecurityRequirement(name = "bearerAuth")
 public class ProductController {
     private final ProductService service;
 

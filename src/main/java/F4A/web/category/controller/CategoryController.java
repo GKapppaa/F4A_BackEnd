@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import F4A.web.category.model.Category;
 import F4A.web.category.service.CategoryService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController 
 @RequestMapping("/api/v2/categories")
+@SecurityRequirement(name = "bearerAuth")
 public class CategoryController {
     private final CategoryService service;
 
