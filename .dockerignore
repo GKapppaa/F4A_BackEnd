@@ -1,0 +1,13 @@
+.git
+.agents/
+target/
+node_modules/
+.neon
+.env
+.env.*
+!.env.example
+env.txt
+package*.json
+neon.ts
+opencode.jsonc
+skills-lock.json

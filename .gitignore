@@ -32,3 +32,9 @@ build/
 ### VS Code ###
 .vscode/
 .env
+.env.local
+.env.*.local
+.neon
+node_modules/
+.env.local
+opencode.jsonc/
